@@ -1,5 +1,4 @@
-[providers]
-nodejs = {}
+providers = ["nodejs"]
 
 [phases.setup]
 nixPkgs = ["ffmpeg"]
