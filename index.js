@@ -1,5 +1,5 @@
-const express = require("express");
-const convert = require("./api/convert");
+import express from "express";
+import convert from "./api/convert.js";
 
 const app = express();
 app.post("/api/convert", convert);
