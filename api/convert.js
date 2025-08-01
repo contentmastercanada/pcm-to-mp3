@@ -16,10 +16,18 @@ export default async function handler(req, res) {
 
   try {
     await writeFile(inputPath, buffer);
-    await execAsync(`ffmpeg -f s16le -ar 24000 -ac 1 -i ${inputPath} ${outputPath}`);
+    // A more robust command that lets ffmpeg autodetect some properties
+    await execAsync(`ffmpeg -f s16le -ar 24000 -i ${inputPath} ${outputPath}`);
+    // If that fails, try big-endian
+    await execAsync(`ffmpeg -f s16be -ar 24000 -i ${inputPath} ${outputPath}`);
     const mp3 = await readFile(outputPath);
     await unlink(inputPath);
     await unlink(outputPath);
+     const { stdout, stderr } = await execAsync(`ffmpeg -f s16le -ar 24000 -ac 1 -i ${inputPath} ${outputPath}`);
+
+    if (stderr) {
+        console.error("FFmpeg stderr:", stderr);
+    }
 
     res.setHeader("Content-Type", "audio/mpeg");
     res.setHeader("Content-Disposition", "attachment; filename=\"output.mp3\"");
