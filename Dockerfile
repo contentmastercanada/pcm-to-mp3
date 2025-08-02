@@ -1,9 +1,11 @@
-FROM n8nio/n8n:latest
+FROM node:18-alpine
 
-USER root
-RUN apk add --no-cache ffmpeg
+# Install ffmpeg and n8n
+RUN apk add --no-cache ffmpeg \
+    && npm install -g n8n
 
-USER node
+# Expose Railway compatible port
 EXPOSE 5678
 
-CMD ["/bin/sh", "-c", "n8n start --port $PORT"]
+# Use shell now safely available
+CMD ["sh", "-c", "n8n start --port $PORT"]
