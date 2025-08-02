@@ -11,3 +11,5 @@ RUN apk add --no-cache ffmpeg
 USER node
 
 # No CMD needed – base image already defines it
+
+EXPOSE 80 # Ensure Railway routes traffic correctly
