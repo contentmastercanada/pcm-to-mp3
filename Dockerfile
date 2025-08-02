@@ -5,4 +5,4 @@ RUN apk add --no-cache ffmpeg
 
 USER node
 
-EXPOSE 80  # Ensure Railway routes traffic correctly
+EXPOSE 5678  # Correct port for n8n UI
