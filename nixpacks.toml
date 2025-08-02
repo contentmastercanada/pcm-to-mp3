@@ -1,10 +1,6 @@
 [phases.setup]
 nixPkgs = ["nodejs_18", "ffmpeg"]
-
-[phases.install]
-cmds = [
-  "npm install -g n8n"  # Install n8n globally
-]
+nixpkgsNodePackages = ["n8n"]
 
 [start]
-cmd = "/root/.npm-global/bin/n8n"  # Explicit path to n8n binary
+cmd = "n8n"
