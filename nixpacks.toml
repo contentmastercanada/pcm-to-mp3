@@ -1,2 +1,10 @@
 [phases.setup]
 nixPkgs = ["nodejs", "ffmpeg"]
+
+[phases.install]
+cmds = [
+  "npm install -g n8n"  # Install n8n globally
+]
+
+[start]
+cmd = "n8n"  # Start n8n
