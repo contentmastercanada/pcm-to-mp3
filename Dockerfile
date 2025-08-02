@@ -1,11 +1,13 @@
-FROM node:18-alpine
+FROM node:18-slim
 
-# Install ffmpeg and n8n
-RUN apk add --no-cache ffmpeg \
-    && npm install -g n8n
+# Install ffmpeg and other dependencies
+RUN apt-get update && apt-get install -y ffmpeg curl && apt-get clean
 
-# Expose Railway compatible port
+# Install n8n globally
+RUN npm install -g n8n
+
+# Expose the port for Railway
 EXPOSE 5678
 
-# Use shell now safely available
-CMD ["sh", "-c", "n8n start --port $PORT"]
+# Start n8n binding to Railway's dynamic port
+CMD ["bash", "-c", "n8n start --port $PORT"]
