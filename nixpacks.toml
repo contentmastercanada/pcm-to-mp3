@@ -1,6 +1,5 @@
-[phases.setup]
-nixPkgs = ["nodejs_18", "ffmpeg"]
-nixpkgsNodePackages = ["n8n"]
+[build]
+builder = "docker"
 
-[start]
-cmd = "n8n"
+[deploy]
+startCommand = "n8n"
