@@ -2,8 +2,8 @@ FROM n8nio/n8n:latest
 
 USER root
 RUN apk add --no-cache ffmpeg
-USER node
 
+USER node
 EXPOSE 5678
 
-CMD ["sh", "-c", "n8n start --port $PORT"]
+CMD ["/bin/sh", "-c", "n8n start --port $PORT"]
