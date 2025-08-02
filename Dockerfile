@@ -1,12 +1,12 @@
-# Use official n8n image with ffmpeg preinstalled
+# Use official n8n image
 FROM n8nio/n8n:latest
 
-# Install ffmpeg (in case it's missing or you want control)
+# Install ffmpeg using Alpine package manager
 USER root
-RUN apt-get update && apt-get install -y ffmpeg && apt-get clean
+RUN apk add --no-cache ffmpeg
 
 # Switch back to n8n user for security
 USER node
 
-# Default command
+# Start n8n
 CMD ["n8n"]
